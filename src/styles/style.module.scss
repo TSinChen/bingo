@@ -1,0 +1,145 @@
+.container {
+	display: flex;
+	margin: auto;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	row-gap: 20px;
+}
+
+.lines {
+	margin-top: 20px;
+	font-size: 28px;
+}
+
+.table {
+	border: 1px solid #000;
+	border-spacing: 0;
+
+	td {
+		width: 50px;
+		height: 50px;
+		font-size: 24px;
+		text-align: center;
+		border: 1px solid #000;
+		cursor: pointer;
+		user-select: none;
+
+		&.selected {
+			position: relative;
+			cursor: default;
+
+			&::before {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				content: '';
+				width: 70%;
+				height: 70%;
+				border: 2px solid #000;
+				border-radius: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		& .line {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			&::before {
+				content: '';
+				position: absolute;
+				background-color: #000;
+			}
+
+			&.horizontalChecked {
+				&::before {
+					top: 50%;
+					left: 0;
+					width: 100%;
+					height: 2px;
+					transform: translateY(-50%);
+				}
+			}
+
+			&.verticalChecked {
+				&::before {
+					content: '';
+					position: absolute;
+					background-color: #000;
+					top: 0;
+					left: 50%;
+					width: 2px;
+					height: 100%;
+					transform: translateX(-50%);
+				}
+			}
+
+			&.leftDiagonalChecked {
+				&::before {
+					top: 0;
+					left: 0;
+					width: 141%;
+					border-bottom: 2px solid #000;
+					transform: rotate(45deg);
+					transform-origin: top left;
+				}
+			}
+
+			&.rightDiagonalChecked {
+				&::before {
+					top: 0;
+					right: 0;
+					width: 141%;
+					border-bottom: 2px solid #000;
+					transform: rotate(-45deg);
+					transform-origin: top right;
+				}
+			}
+		}
+	}
+}
+
+.form {
+	display: flex;
+	margin-top: 30px;
+	flex-direction: column;
+	align-items: center;
+
+	&__size {
+		display: flex;
+		margin-bottom: 24px;
+		font-size: 32px;
+		align-items: center;
+		column-gap: 16px;
+
+		&__decrease,
+		&__increase {
+			background-color: #fff;
+			padding: 4px 10px;
+			font-size: 18px;
+			font-weight: bold;
+			border: 2px solid #000;
+			border-radius: 6px;
+			cursor: pointer;
+		}
+
+		&--disabled {
+			opacity: 0.2;
+			cursor: default;
+		}
+	}
+
+	&__button {
+		background-color: #fff;
+		padding: 6px 12px;
+		font-size: 18px;
+		font-weight: bold;
+		border: 2px solid #000;
+		border-radius: 6px;
+		cursor: pointer;
+	}
+}
